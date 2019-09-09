@@ -1,0 +1,36 @@
+{
+  "name": "qna-config-final-form",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.22",
+    "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "final-form": "^4.18.5",
+    "final-form-arrays": "^3.0.1",
+    "govuk-react": "^0.7.2",
+    "next": "^9.0.4",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-beautiful-dnd": "^11.0.5",
+    "react-dom": "^16.9.0",
+    "react-final-form": "^6.3.0",
+    "react-final-form-arrays": "^3.1.1",
+    "react-final-form-listeners": "^1.0.2",
+    "react-markdown": "^4.2.2",
+    "react-select": "^3.0.4",
+    "react-sortable-hoc": "^1.10.1",
+    "react-textarea-autosize": "^7.1.0",
+    "styled-components": "^4.3.2",
+    "styled-normalize": "^8.0.6"
+  }
+}
