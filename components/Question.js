@@ -120,10 +120,9 @@ export default Question;
 
 const Container = styled.div`
   position: relative;
-  border: 2px solid #ddd;
-  border-radius: 3px;
+  border: 1px solid #bdbdbd;
+  background: #fafafa;
   padding: 10px 10px 10px 40px;
-  /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); */
   margin-bottom: 10px;
 `;
 

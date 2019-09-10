@@ -54,9 +54,9 @@ const Container = styled.div`
 `;
 
 const Rows = styled.div`
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  /* border: 1px solid #ddd; */
+  /* border-radius: 3px; */
+  /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); */
 
   input,
   textarea {
@@ -68,6 +68,7 @@ const Rows = styled.div`
     min-height: 38px;
     line-height: 24px;
     margin-left: 0;
+    margin-bottom: 4px;
     &[disabled] {
       background: #eee;
     }

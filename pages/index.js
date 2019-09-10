@@ -16,13 +16,57 @@ const Index = () => (
       <Form
         onSubmit={() => {}}
         initialValues={{
+          // This is just for one page
           PageId: "2",
           SequenceId: "c1a3c474-4bb0-4c0d-0b62-08d6f96ce085",
           SectionId: "713a23fa-3a1f-4bdc-852e-08d6f96ce0ce",
           Title: "Name to use on the register",
           LinkTitle: "Name to use on the register",
           InfoText: "",
-          name: "Page 1",
+          PageOfAnswers: [],
+          Next: [
+            {
+              Action: "NextPage",
+              ReturnId: "3",
+              ConditionMet: false
+            }
+          ],
+          Complete: false,
+          AllowMultipleAnswers: false,
+          Active: false,
+          NotRequiredOrgTypes: [],
+          NotRequired: false,
+          BodyText: "<p>This is the body text</p>",
+          Questions: [
+            {
+              QuestionId: "CD-01",
+              QuestionTag: "use-trading-name",
+              Label: "Do you want to use your trading name on the register?",
+              ShortLabel: "",
+              QuestionBodyText: "",
+              Hint: "",
+              Input: {
+                Type: "Radio",
+                Options: [
+                  {
+                    Value: "Yes",
+                    Label: "Yes"
+                  },
+                  {
+                    Value: "No",
+                    Label: "No"
+                  }
+                ],
+                Validations: [
+                  {
+                    Name: "Required",
+                    ErrorMessage:
+                      "Select yes if you want to use your trading name on the register"
+                  }
+                ]
+              }
+            }
+          ],
           questions: [
             {
               type: "text",
