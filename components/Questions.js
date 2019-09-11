@@ -8,30 +8,37 @@ import Question from "./Question";
 const Questions = sortableContainer(() => {
   return (
     <Container>
-      <FieldArray name="questions">
-        {({ fields }) => (
-          <>
-            <SortableList
-              lockAxis="y"
-              useDragHandle
-              onSortEnd={({ oldIndex, newIndex }) =>
-                fields.move(oldIndex, newIndex)
-              }
-            >
-              {fields.map((name, index) => {
-                return <Question key={name} index={index} name={name} />;
-              })}
-            </SortableList>
-            <Buttons>
-              <button
-                type="button"
-                onClick={() => fields.push({ type: "text" })}
+      <h3>Questions</h3>
+      <FieldArray name="Questions">
+        {({ fields }) => {
+          console.log(fields);
+
+          return (
+            <>
+              <SortableList
+                lockAxis="y"
+                useDragHandle
+                onSortEnd={({ oldIndex, newIndex }) =>
+                  fields.move(oldIndex, newIndex)
+                }
               >
-                Add Question
-              </button>
-            </Buttons>
-          </>
-        )}
+                {fields.map((name, index) => {
+                  console.log(name);
+
+                  return <Question key={name} index={index} name={name} />;
+                })}
+              </SortableList>
+              <Buttons>
+                <button
+                  type="button"
+                  onClick={() => fields.push({ type: "text" })}
+                >
+                  Add Question
+                </button>
+              </Buttons>
+            </>
+          );
+        }}
       </FieldArray>
     </Container>
   );
@@ -42,7 +49,7 @@ export default Questions;
 const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  margin: 20px 0;
+  margin-bottom: 20px;
 `;
 
 const Buttons = styled.div`

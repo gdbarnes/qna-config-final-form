@@ -7,6 +7,7 @@ import GlobalStyles from "../styles/global";
 
 import Questions from "../components/Questions";
 import GeneratedPage from "../components/GeneratedPage";
+import Textarea from "../components/Textarea";
 
 const Index = () => (
   <>
@@ -18,12 +19,9 @@ const Index = () => (
         initialValues={{
           // This is just for one page
           PageId: "2",
-          SequenceId: "c1a3c474-4bb0-4c0d-0b62-08d6f96ce085",
-          SectionId: "713a23fa-3a1f-4bdc-852e-08d6f96ce0ce",
           Title: "Name to use on the register",
           LinkTitle: "Name to use on the register",
           InfoText: "",
-          PageOfAnswers: [],
           Next: [
             {
               Action: "NextPage",
@@ -31,12 +29,8 @@ const Index = () => (
               ConditionMet: false
             }
           ],
-          Complete: false,
           AllowMultipleAnswers: false,
-          Active: false,
-          NotRequiredOrgTypes: [],
-          NotRequired: false,
-          BodyText: "<p>This is the body text</p>",
+          BodyText: "",
           Questions: [
             {
               QuestionId: "CD-01",
@@ -104,8 +98,60 @@ const Index = () => (
                   value: "Accountancy"
                 }
               ]
+            },
+            {
+              QuestionId: "CD-01",
+              QuestionTag: "use-trading-name",
+              Label: "Do you want to use your trading name on the register?",
+              ShortLabel: "",
+              QuestionBodyText: "",
+              Hint: "",
+              Input: {
+                Type: "Radio",
+                Options: [
+                  {
+                    Value: "Yes",
+                    Label: "Yes"
+                  },
+                  {
+                    Value: "No",
+                    Label: "No"
+                  }
+                ],
+                Validations: [
+                  {
+                    Name: "Required",
+                    ErrorMessage:
+                      "Select yes if you want to use your trading name on the register"
+                  }
+                ]
+              }
+            },
+            {
+              QuestionId: "CD-02",
+              QuestionTag: "contact-name",
+              Label: "Full name",
+              ShortLabel: "",
+              QuestionBodyText: "",
+              Hint: "",
+              Input: {
+                Type: "text",
+                Validations: [
+                  {
+                    Name: "Required",
+                    ErrorMessage: "Enter name"
+                  }
+                ]
+              }
             }
-          ]
+          ],
+          SequenceId: "c1a3c474-4bb0-4c0d-0b62-08d6f96ce085",
+          SectionId: "713a23fa-3a1f-4bdc-852e-08d6f96ce0ce",
+          PageOfAnswers: [],
+          Complete: false,
+          Active: false,
+          NotRequiredOrgTypes: [],
+          NotRequired: false
         }}
         mutators={{
           ...arrayMutators
@@ -122,15 +168,32 @@ const Index = () => (
         }) => (
           <Columns>
             <form onSubmit={handleSubmit}>
-              <h3>Page builder</h3>
+              <h3>Page</h3>
               {/* <GradientBar /> */}
               <Row>
-                <label>Page title</label>
+                <Field
+                  name="LinkTitle"
+                  component="input"
+                  type="text"
+                  placeholder="Link title"
+                  style={{ width: "100%" }}
+                />
+              </Row>
+              <Row>
                 <Field
                   name="Title"
                   component="input"
                   type="text"
-                  placeholder="Page name"
+                  placeholder="Page title"
+                  style={{ width: "100%" }}
+                />
+              </Row>
+              <Row>
+                <Field
+                  name="BodyText"
+                  component={Textarea}
+                  type="text"
+                  placeholder="Body text (HTML)"
                   style={{ width: "100%" }}
                 />
               </Row>
@@ -143,10 +206,10 @@ const Index = () => (
               <a title="Section page">Section page</a>
             </Link> */}
             </div>
-            <div>
+            {/* <div>
               <h3>Generated JSON</h3>
               <Dump>{JSON.stringify(values, 0, 2)}</Dump>
-            </div>
+            </div> */}
           </Columns>
         )}
       />
@@ -200,14 +263,27 @@ const Columns = styled.div`
 const Row = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  & > label {
-    width: 20%;
-    line-height: 32px;
-    white-space: nowrap;
-    margin-right: 10px;
+
+  input,
+  textarea {
+    flex: 1;
+    padding: 6px 9px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    &[disabled] {
+      background: #eee;
+    }
   }
-  input {
-    padding: 5px 8px;
+
+  & > input {
+    margin: 0 0 5px 0;
+    padding: 9px;
+  }
+  & > textarea {
+    min-height: 38px;
+    line-height: 24px;
+    margin: 0 0 5px 0;
   }
 `;
 

@@ -1,4 +1,5 @@
 import { Form, Field } from "react-final-form";
+import ReactHtmlParser from "react-html-parser";
 import styled from "styled-components";
 import {
   asAnchor,
@@ -36,6 +37,8 @@ import OptionGroupQuestion from "./generated/OptionGroupQuestion";
 import DropdownQuestion from "./generated/DropdownQuestion";
 import ChecklistQuestion from "./generated/ChecklistQuestion";
 
+const AnchorTag = asAnchor("a");
+
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const onSubmit = async values => {
@@ -53,64 +56,77 @@ const components = {
 };
 
 const GeneratedPage = ({ schema }) => {
-  const { Title, questions } = schema;
+  // console.log(schema);
+
+  const { LinkTitle, Title, BodyText, questions } = schema;
   const reset = event => event.preventDefault();
   return (
     <Container>
-      <H1>{Title}</H1>
+      <GridRow>
+        <GridCol>
+          <AnchorTag href="#">{LinkTitle}</AnchorTag>
+        </GridCol>
+      </GridRow>
+      <GridRow>
+        <GridCol>
+          <H1>{Title}</H1>
+        </GridCol>
+      </GridRow>
+      <GridRow>
+        <GridCol>{ReactHtmlParser(BodyText)}</GridCol>
+      </GridRow>
+
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, reset, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
-            <Main>
-              <GridRow>
-                <GridCol>
-                  {questions &&
-                    questions
-                      .filter(question => question.key && question.type)
-                      .map((question, index) => {
-                        const QuestionComponent = components[question.type];
-                        return (
-                          question.key && (
-                            <QuestionComponent
-                              key={index}
-                              questionIndex={index}
-                              question={question}
-                            />
-                          )
-                        );
-                      })}
-                </GridCol>
-              </GridRow>
-              <GridRow>
-                <GridCol>
-                  <Button type="submit" disabled={submitting}>
-                    Submit
-                  </Button>
-                </GridCol>
-              </GridRow>
-              <GridRow>
-                <GridCol>
-                  <Button onClick={reset} disabled={submitting || pristine}>
-                    Reset
-                  </Button>
-                </GridCol>
-              </GridRow>
-              <GridRow>
-                <GridCol>
-                  <Dump>{JSON.stringify(values, 0, 2)}</Dump>
-                </GridCol>
-              </GridRow>
-            </Main>
+            <GridRow>
+              <GridCol>
+                {questions &&
+                  questions
+                    .filter(question => question.key && question.type)
+                    .map((question, index) => {
+                      const QuestionComponent = components[question.type];
+                      return (
+                        question.key && (
+                          <QuestionComponent
+                            key={index}
+                            questionIndex={index}
+                            question={question}
+                          />
+                        )
+                      );
+                    })}
+              </GridCol>
+            </GridRow>
+            <GridRow>
+              <GridCol>
+                <Button type="submit" disabled={submitting}>
+                  Submit
+                </Button>
+              </GridCol>
+            </GridRow>
+            <GridRow>
+              <GridCol>
+                <Button onClick={reset} disabled={submitting || pristine}>
+                  Reset
+                </Button>
+              </GridCol>
+            </GridRow>
+            <GridRow>
+              <GridCol>
+                <Dump>{JSON.stringify(values, 0, 2)}</Dump>
+              </GridCol>
+            </GridRow>
             {/* <Buttons>
                 <Button
                   secondary
                   type="submit"
                   disabled={submitting || pristine}
                 >
-                  Submit
+                Submit
                 </Button>
-              </Buttons>
+                </Buttons>
               <Dump>{JSON.stringify(values, 0, 2)}</Dump> */}
           </form>
         )}

@@ -48,7 +48,7 @@ RadioGroup.propTypes = {
 
 const OptionGroupQuestion = ({ question }) => (
   <FormGroup>
-    {console.log("question:", question)}
+    {/* {console.log("question:", question)} */}
     {question.answers && (
       <Field
         type="radio"

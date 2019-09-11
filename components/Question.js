@@ -35,13 +35,16 @@ const types = [
   }
 ];
 
-const hasOptions = type =>
-  ~["optionGroup", "checklist", "dropdown"].indexOf(type);
+const hasOptions = type => {
+  // console.log(Input);
+
+  return ~["optionGroup", "checklist", "dropdown"].indexOf(type);
+};
 
 const isText = type => ~["text", "longText"].indexOf(type);
 
 const IfType = ({ name, children, predicate }) => (
-  <Field name={`${name}.type`} subscription={{ value: true }}>
+  <Field name={`${name}.Input.Type`} subscription={{ value: true }}>
     {({ input: { value } }) => (predicate(value) ? children : null)}
   </Field>
 );
@@ -56,6 +59,9 @@ const Question = sortableElement(({ name }) => {
         <Handle>
           <SortHandle />
         </Handle>
+        {/* <Handle>
+          <SortHandle />
+        </Handle> */}
         {/* <Toggle
             title={open ? "Collapse" : "Expand"}
             name={open ? "chevron-down" : "chevron-right"}
@@ -63,19 +69,19 @@ const Question = sortableElement(({ name }) => {
           /> */}
         <Row>
           <Field
-            name={`${name}.key`}
+            name={`${name}.QuestionId`}
             component="input"
             type="text"
-            placeholder="Field Name"
+            placeholder="Question name"
           />
           <Field
-            name={`${name}.type`}
+            name={`${name}.Input.Type`}
             component={TypeSelector}
             options={types}
             isSearchable={false}
           />
           <WhenFieldChanges
-            field={`${name}.type`}
+            field={`${name}.Input.Type`}
             becomes="text"
             set={`${name}.answers`}
             to={undefined}
@@ -83,14 +89,14 @@ const Question = sortableElement(({ name }) => {
         </Row>
         <Row>
           <Field
-            name={`${name}.text`}
+            name={`${name}.Label`}
             component={Textarea}
             placeholder="Question"
           />
         </Row>
         <Row>
           <Field
-            name={`${name}.hint`}
+            name={`${name}.Hint`}
             component={Textarea}
             placeholder="Hint text"
           />
@@ -121,7 +127,8 @@ export default Question;
 const Container = styled.div`
   position: relative;
   border: 1px solid #bdbdbd;
-  background: #fafafa;
+  background: #fff;
+  border-radius: 3px;
   padding: 10px 10px 10px 40px;
   margin-bottom: 10px;
 `;
@@ -143,19 +150,19 @@ const Row = styled.div`
   }
 
   & > input {
-    margin: 5px;
+    margin-bottom: 5px;
     padding: 9px;
   }
   & > textarea {
     min-height: 38px;
     line-height: 24px;
-    margin: 5px;
+    margin-bottom: 5px;
     margin-right: 3px;
   }
 `;
 
 const TypeSelector = styled(Select)`
-  margin: 5px;
+  margin: 0 5px 5px 5px;
   width: 150px;
 `;
 
