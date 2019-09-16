@@ -26,6 +26,10 @@ const types = [
     label: "Radio group"
   },
   {
+    value: "Radio",
+    label: "Radio group"
+  },
+  {
     value: "checklist",
     label: "Checkbox list"
   },
@@ -38,7 +42,7 @@ const types = [
 const hasOptions = type => {
   // console.log(Input);
 
-  return ~["optionGroup", "checklist", "dropdown"].indexOf(type);
+  return ~["optionGroup", "Radio", "checklist", "dropdown"].indexOf(type);
 };
 
 const isText = type => ~["text", "longText"].indexOf(type);
@@ -106,7 +110,7 @@ const Question = sortableElement(({ name }) => {
             <IfType name={name} predicate={hasOptions}>
               <Answers name={name} />
             </IfType>
-            <IfType name={name} predicate={isText}>
+            {/* <IfType name={name} predicate={isText}>
               <Row>
                 <Field
                   name={`${name}.placeholder`}
@@ -114,7 +118,7 @@ const Question = sortableElement(({ name }) => {
                   placeholder="Placeholder"
                 />
               </Row>
-            </IfType>
+            </IfType> */}
           </>
         )}
       </Container>

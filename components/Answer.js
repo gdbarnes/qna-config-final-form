@@ -14,14 +14,18 @@ const Answer = sortableElement(({ name, remove }) => (
     <Rows>
       <Row>
         <Field
-          name={`${name}.value`}
+          name={`${name}.Value`}
           component="input"
           type="text"
           placeholder="Value"
         />
       </Row>
       <Row>
-        <Field name={`${name}.text`} component={Textarea} placeholder="Label" />
+        <Field
+          name={`${name}.Label`}
+          component={Textarea}
+          placeholder="Label"
+        />
       </Row>
     </Rows>
     <RemoveButton icon={faTrash} onClick={remove} />

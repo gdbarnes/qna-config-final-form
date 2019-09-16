@@ -11,7 +11,7 @@ const Questions = sortableContainer(() => {
       <h3>Questions</h3>
       <FieldArray name="Questions">
         {({ fields }) => {
-          console.log(fields);
+          // console.log(fields);
 
           return (
             <>
@@ -23,7 +23,7 @@ const Questions = sortableContainer(() => {
                 }
               >
                 {fields.map((name, index) => {
-                  console.log(name);
+                  // console.log(name);
 
                   return <Question key={name} index={index} name={name} />;
                 })}

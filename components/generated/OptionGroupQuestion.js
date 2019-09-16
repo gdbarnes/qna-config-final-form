@@ -8,6 +8,7 @@ const RadioGroup = ({ label, hint, options, inline, input, meta }) => (
     <MultiChoice label={label} hint={hint} meta={meta}>
       {options.map(option => {
         // props removed from example here https://github.com/penx/govuk-react-example/blob/master/src/App.js
+
         return (
           option && (
             <Radio
@@ -49,17 +50,17 @@ RadioGroup.propTypes = {
 const OptionGroupQuestion = ({ question }) => (
   <FormGroup>
     {/* {console.log("question:", question)} */}
-    {question.answers && (
+    {question.Input.Options && (
       <Field
         type="radio"
-        name={question.key}
-        label={question.text}
-        hint={question.hint}
+        name={question.QuestionId}
+        label={question.Label}
+        hint={question.Hint}
         component={RadioGroup}
-        options={question.answers.map(
+        options={question.Input.Options.map(
           answer =>
-            answer.text &&
-            answer.value && { title: answer.text, value: answer.value }
+            answer.Label &&
+            answer.Value && { title: answer.Label, value: answer.Value }
         )}
       />
     )}

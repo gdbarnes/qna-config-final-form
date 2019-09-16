@@ -51,6 +51,7 @@ const components = {
   longText: LongTextQuestion,
   checkbox: CheckboxQuestion,
   optionGroup: OptionGroupQuestion,
+  Radio: OptionGroupQuestion,
   checklist: ChecklistQuestion,
   dropdown: DropdownQuestion
 };
@@ -58,7 +59,7 @@ const components = {
 const GeneratedPage = ({ schema }) => {
   // console.log(schema);
 
-  const { LinkTitle, Title, BodyText, questions } = schema;
+  const { LinkTitle, Title, BodyText, Questions } = schema;
   const reset = event => event.preventDefault();
   return (
     <Container>
@@ -82,21 +83,23 @@ const GeneratedPage = ({ schema }) => {
           <form onSubmit={handleSubmit}>
             <GridRow>
               <GridCol>
-                {questions &&
-                  questions
-                    .filter(question => question.key && question.type)
-                    .map((question, index) => {
-                      const QuestionComponent = components[question.type];
-                      return (
-                        question.key && (
-                          <QuestionComponent
-                            key={index}
-                            questionIndex={index}
-                            question={question}
-                          />
-                        )
-                      );
-                    })}
+                {Questions &&
+                  Questions.filter(
+                    question => question.QuestionId && question.Input
+                  ).map((question, index) => {
+                    // console.log(question);
+
+                    const QuestionComponent = components[question.Input.Type];
+                    return (
+                      question.QuestionId && (
+                        <QuestionComponent
+                          key={index}
+                          questionIndex={index}
+                          question={question}
+                        />
+                      )
+                    );
+                  })}
               </GridCol>
             </GridRow>
             <GridRow>

@@ -59,6 +59,23 @@ const Index = () => (
                   }
                 ]
               }
+            },
+            {
+              QuestionId: "CD-02",
+              QuestionTag: "contact-name",
+              Label: "Full name",
+              ShortLabel: "",
+              QuestionBodyText: "",
+              Hint: "",
+              Input: {
+                Type: "text",
+                Validations: [
+                  {
+                    Name: "Required",
+                    ErrorMessage: "Enter name"
+                  }
+                ]
+              }
             }
           ],
           questions: [
@@ -98,52 +115,52 @@ const Index = () => (
                   value: "Accountancy"
                 }
               ]
-            },
-            {
-              QuestionId: "CD-01",
-              QuestionTag: "use-trading-name",
-              Label: "Do you want to use your trading name on the register?",
-              ShortLabel: "",
-              QuestionBodyText: "",
-              Hint: "",
-              Input: {
-                Type: "Radio",
-                Options: [
-                  {
-                    Value: "Yes",
-                    Label: "Yes"
-                  },
-                  {
-                    Value: "No",
-                    Label: "No"
-                  }
-                ],
-                Validations: [
-                  {
-                    Name: "Required",
-                    ErrorMessage:
-                      "Select yes if you want to use your trading name on the register"
-                  }
-                ]
-              }
-            },
-            {
-              QuestionId: "CD-02",
-              QuestionTag: "contact-name",
-              Label: "Full name",
-              ShortLabel: "",
-              QuestionBodyText: "",
-              Hint: "",
-              Input: {
-                Type: "text",
-                Validations: [
-                  {
-                    Name: "Required",
-                    ErrorMessage: "Enter name"
-                  }
-                ]
-              }
             }
+            // {
+            //   QuestionId: "CD-01",
+            //   QuestionTag: "use-trading-name",
+            //   Label: "Do you want to use your trading name on the register?",
+            //   ShortLabel: "",
+            //   QuestionBodyText: "",
+            //   Hint: "",
+            //   Input: {
+            //     Type: "Radio",
+            //     Options: [
+            //       {
+            //         Value: "Yes",
+            //         Label: "Yes"
+            //       },
+            //       {
+            //         Value: "No",
+            //         Label: "No"
+            //       }
+            //     ],
+            //     Validations: [
+            //       {
+            //         Name: "Required",
+            //         ErrorMessage:
+            //           "Select yes if you want to use your trading name on the register"
+            //       }
+            //     ]
+            //   }
+            // },
+            // {
+            //   QuestionId: "CD-02",
+            //   QuestionTag: "contact-name",
+            //   Label: "Full name",
+            //   ShortLabel: "",
+            //   QuestionBodyText: "",
+            //   Hint: "",
+            //   Input: {
+            //     Type: "text",
+            //     Validations: [
+            //       {
+            //         Name: "Required",
+            //         ErrorMessage: "Enter name"
+            //       }
+            //     ]
+            //   }
+            // }
           ],
           SequenceId: "c1a3c474-4bb0-4c0d-0b62-08d6f96ce085",
           SectionId: "713a23fa-3a1f-4bdc-852e-08d6f96ce0ce",
