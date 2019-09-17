@@ -2,7 +2,6 @@ import { Form, Field } from "react-final-form";
 import ReactHtmlParser from "react-html-parser";
 import styled from "styled-components";
 import {
-  asAnchor,
   asPaginationItem,
   BackLink,
   Breadcrumb,
@@ -17,6 +16,7 @@ import {
   Header,
   InputField,
   Layout,
+  Link,
   ListItem,
   ListNavigation,
   Main,
@@ -37,8 +37,6 @@ import OptionGroupQuestion from "./generated/OptionGroupQuestion";
 import DropdownQuestion from "./generated/DropdownQuestion";
 import ChecklistQuestion from "./generated/ChecklistQuestion";
 
-const AnchorTag = asAnchor("a");
-
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const onSubmit = async values => {
@@ -49,6 +47,7 @@ const onSubmit = async values => {
 const components = {
   text: TextQuestion,
   longText: LongTextQuestion,
+  Textarea: LongTextQuestion,
   checkbox: CheckboxQuestion,
   optionGroup: OptionGroupQuestion,
   Radio: OptionGroupQuestion,
@@ -65,7 +64,9 @@ const GeneratedPage = ({ schema }) => {
     <Container>
       <GridRow>
         <GridCol>
-          <AnchorTag href="#">{LinkTitle}</AnchorTag>
+          <Link noVisitedState href="#">
+            {LinkTitle}
+          </Link>
         </GridCol>
       </GridRow>
       <GridRow>
@@ -109,18 +110,16 @@ const GeneratedPage = ({ schema }) => {
                 </Button>
               </GridCol>
             </GridRow>
-            <GridRow>
+            {/* <GridRow>
               <GridCol>
-                <Button onClick={reset} disabled={submitting || pristine}>
-                  Reset
-                </Button>
+                <Button disabled={submitting || pristine}>Reset</Button>
               </GridCol>
-            </GridRow>
-            <GridRow>
+            </GridRow> */}
+            {/* <GridRow>
               <GridCol>
                 <Dump>{JSON.stringify(values, 0, 2)}</Dump>
               </GridCol>
-            </GridRow>
+            </GridRow> */}
             {/* <Buttons>
                 <Button
                   secondary

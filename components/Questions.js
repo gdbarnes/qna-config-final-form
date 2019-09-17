@@ -11,7 +11,7 @@ const Questions = sortableContainer(() => {
       <h3>Questions</h3>
       <FieldArray name="Questions">
         {({ fields }) => {
-          // console.log(fields);
+          // console.log("fields:", fields);
 
           return (
             <>
@@ -25,16 +25,23 @@ const Questions = sortableContainer(() => {
                 {fields.map((name, index) => {
                   // console.log(name);
 
-                  return <Question key={name} index={index} name={name} />;
+                  return (
+                    <Question
+                      key={name}
+                      index={index}
+                      name={name}
+                      removeQuestion={() => fields.remove(index)}
+                    />
+                  );
                 })}
               </SortableList>
               <Buttons>
-                <button
+                <Button
                   type="button"
-                  onClick={() => fields.push({ type: "text" })}
+                  onClick={() => fields.push({ Input: { Type: "text" } })}
                 >
-                  Add Question
-                </button>
+                  + Add Question
+                </Button>
               </Buttons>
             </>
           );
@@ -55,4 +62,16 @@ const Container = styled.div`
 const Buttons = styled.div`
   padding: 10px 0;
   text-align: left;
+`;
+
+const Button = styled.button`
+  background: #0b0c0c;
+  padding: 5px 8px 6px;
+  color: white;
+  border-radius: 3px;
+  border: 0;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
 `;

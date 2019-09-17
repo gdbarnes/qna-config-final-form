@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Field } from "react-final-form";
 import { sortableElement } from "react-sortable-hoc";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import SortHandle from "./SortHandle";
 import WhenFieldChanges from "./WhenFieldChanges";
 import Select from "./Select";
@@ -13,21 +15,25 @@ const types = [
     value: "text",
     label: "Text"
   },
+  // {
+  //   value: "longText",
+  //   label: "Long answer"
+  // },
   {
-    value: "longText",
+    value: "Textarea",
     label: "Long answer"
   },
   {
     value: "checkbox",
     label: "Checkbox"
   },
-  {
-    value: "optionGroup",
-    label: "Radio group"
-  },
+  // {
+  //   value: "optionGroup",
+  //   label: "Radio group"
+  // },
   {
     value: "Radio",
-    label: "Radio group"
+    label: "Radio"
   },
   {
     value: "checklist",
@@ -53,7 +59,7 @@ const IfType = ({ name, children, predicate }) => (
   </Field>
 );
 
-const Question = sortableElement(({ name }) => {
+const Question = sortableElement(({ name, removeQuestion }) => {
   const [open, setOpen] = useState(true);
   const toggleOpen = event => setOpen(!open);
 
@@ -62,6 +68,11 @@ const Question = sortableElement(({ name }) => {
       <Container>
         <Handle>
           <SortHandle />
+          <RemoveQuestionButton
+            icon={faTrash}
+            onClick={removeQuestion}
+            width="0"
+          />
         </Handle>
         {/* <Handle>
           <SortHandle />
@@ -76,7 +87,7 @@ const Question = sortableElement(({ name }) => {
             name={`${name}.QuestionId`}
             component="input"
             type="text"
-            placeholder="Question name"
+            placeholder="Question ID"
           />
           <Field
             name={`${name}.Input.Type`}
@@ -87,7 +98,7 @@ const Question = sortableElement(({ name }) => {
           <WhenFieldChanges
             field={`${name}.Input.Type`}
             becomes="text"
-            set={`${name}.answers`}
+            set={`${name}.Input.Options`}
             to={undefined}
           />
         </Row>
@@ -95,7 +106,7 @@ const Question = sortableElement(({ name }) => {
           <Field
             name={`${name}.Label`}
             component={Textarea}
-            placeholder="Question"
+            placeholder="Label"
           />
         </Row>
         <Row>
@@ -184,4 +195,19 @@ const Handle = styled.div`
   left: 10px;
   top: 10px;
   color: #666;
+`;
+
+const removeButtonSize = 16;
+const RemoveQuestionButton = styled(FontAwesomeIcon)`
+  color: #800;
+  cursor: pointer;
+  font-size: ${removeButtonSize}px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: ${removeButtonSize + 5}px;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
 `;

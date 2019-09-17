@@ -28,7 +28,7 @@ const Answer = sortableElement(({ name, remove }) => (
         />
       </Row>
     </Rows>
-    <RemoveButton icon={faTrash} onClick={remove} />
+    <RemoveButton icon={faTrash} onClick={remove} width="0" />
   </Container>
 ));
 
@@ -43,18 +43,16 @@ const RemoveButton = styled(FontAwesomeIcon)`
   right: 5px;
   top: 50%;
   margin-top: ${removeButtonSize / -2}px;
-  opacity: 0.4;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const Container = styled.div`
   margin: 5px 0;
   position: relative;
   padding-right: 30px;
-  &:hover {
-    ${RemoveButton} {
-      opacity: 1;
-    }
-  }
 `;
 
 const Rows = styled.div`
@@ -88,6 +86,6 @@ const Handle = styled.div`
   position: absolute;
   left: -25px;
   top: 50%;
-  margin-top: -8px;
+  margin-top: -14px;
   color: #666;
 `;

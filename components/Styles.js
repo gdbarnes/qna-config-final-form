@@ -22,7 +22,7 @@ const btn = (light, dark) => css`
     color: black;
   }
   &[disabled] {
-    opacity: 0.6;
+    opacity: 0.7;
     cursor: not-allowed;
   }
 `;

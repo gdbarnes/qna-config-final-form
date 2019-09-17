@@ -30,9 +30,9 @@ const Answers = ({ name }) => {
               ))}
             </SortableList>
             <Buttons>
-              <button type="button" onClick={() => fields.push({})}>
+              <Button type="button" onClick={() => fields.push({})}>
                 + Add Answer
-              </button>
+              </Button>
             </Buttons>
           </>
         )}
@@ -53,4 +53,16 @@ const Container = styled.div`
 const Buttons = styled.div`
   padding: 10px 0;
   text-align: left;
+`;
+
+const Button = styled.button`
+  background: #0b0c0c;
+  padding: 5px 8px 6px;
+  color: white;
+  border-radius: 3px;
+  border: 0;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
 `;
