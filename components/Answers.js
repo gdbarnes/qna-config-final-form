@@ -16,9 +16,10 @@ const Answers = ({ name }) => {
             <SortableList
               lockAxis="y"
               useDragHandle
-              onSortEnd={({ oldIndex, newIndex }) =>
-                fields.move(oldIndex, newIndex)
-              }
+              onSortEnd={({ oldIndex, newIndex }) => {
+                console.log("oldIndex, newIndex:", oldIndex, newIndex);
+                return fields.move(oldIndex, newIndex);
+              }}
             >
               {fields.map((name, index) => (
                 <Answer

@@ -65,7 +65,7 @@ const Rows = styled.div`
     flex: 1;
     padding: 6px 9px;
     font-size: 1em;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 3px;
     min-height: 38px;
     line-height: 24px;

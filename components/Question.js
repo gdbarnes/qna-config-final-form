@@ -15,6 +15,14 @@ const types = [
     value: "text",
     label: "Text"
   },
+  {
+    value: "Date",
+    label: "Date"
+  },
+  {
+    value: "number",
+    label: "Number"
+  },
   // {
   //   value: "longText",
   //   label: "Long answer"
@@ -23,10 +31,10 @@ const types = [
     value: "Textarea",
     label: "Long answer"
   },
-  {
-    value: "checkbox",
-    label: "Checkbox"
-  },
+  // {
+  //   value: "checkbox",
+  //   label: "Checkbox"
+  // },
   // {
   //   value: "optionGroup",
   //   label: "Radio group"
@@ -34,15 +42,15 @@ const types = [
   {
     value: "Radio",
     label: "Radio"
-  },
-  {
-    value: "checklist",
-    label: "Checkbox list"
-  },
-  {
-    value: "dropdown",
-    label: "Select"
   }
+  // {
+  //   value: "checklist",
+  //   label: "Checkbox list"
+  // },
+  // {
+  //   value: "dropdown",
+  //   label: "Select"
+  // }
 ];
 
 const hasOptions = type => {
@@ -78,10 +86,10 @@ const Question = sortableElement(({ name, removeQuestion }) => {
           <SortHandle />
         </Handle> */}
         {/* <Toggle
-            title={open ? "Collapse" : "Expand"}
-            name={open ? "chevron-down" : "chevron-right"}
-            onClick={this.toggleOpen}
-          /> */}
+          title={open ? "Collapse" : "Expand"}
+          name={open ? "chevron-down" : "chevron-right"}
+          onClick={this.toggleOpen}
+        /> */}
         <Row>
           <Field
             name={`${name}.QuestionId`}
@@ -141,7 +149,7 @@ export default Question;
 
 const Container = styled.div`
   position: relative;
-  border: 1px solid #bdbdbd;
+  border: 2px solid #ccc;
   background: #fff;
   border-radius: 3px;
   padding: 10px 10px 10px 40px;
@@ -157,22 +165,26 @@ const Row = styled.div`
     flex: 1;
     padding: 6px 9px;
     font-size: 1em;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 3px;
     &[disabled] {
       background: #eee;
     }
   }
 
+  .required {
+    border: 2px solid #d60000;
+  }
+
   & > input {
-    margin-bottom: 5px;
+    margin: 0 0 5px 0;
     padding: 9px;
   }
+
   & > textarea {
     min-height: 38px;
     line-height: 24px;
-    margin-bottom: 5px;
-    margin-right: 3px;
+    margin: 0 0 5px 0;
   }
 `;
 

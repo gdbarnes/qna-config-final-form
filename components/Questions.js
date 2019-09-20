@@ -13,14 +13,39 @@ const Questions = sortableContainer(() => {
         {({ fields }) => {
           // console.log("fields:", fields);
 
+          const myMove = () => {
+            // Error occurs as soon as we attempt to move the <Radio /> question,
+            // but only if it contains answers.
+            try {
+              fields.move(0, 1);
+            } catch (e) {
+              console.log("Move exploded", e);
+            }
+          };
+
           return (
             <>
+              <div className="move">
+                <button onClick={myMove}>Move down</button>
+              </div>
               <SortableList
                 lockAxis="y"
                 useDragHandle
-                onSortEnd={({ oldIndex, newIndex }) =>
-                  fields.move(oldIndex, newIndex)
-                }
+                onSortEnd={({
+                  oldIndex,
+                  newIndex,
+                  collection,
+                  isKeySorting
+                }) => {
+                  console.log(
+                    "oldIndex, newIndex, collection, isKeySorting:",
+                    oldIndex,
+                    newIndex,
+                    collection,
+                    isKeySorting
+                  );
+                  return fields.move(oldIndex, newIndex);
+                }}
               >
                 {fields.map((name, index) => {
                   // console.log(name);

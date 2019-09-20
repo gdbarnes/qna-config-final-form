@@ -31,6 +31,8 @@ import {
 } from "govuk-react";
 
 import TextQuestion from "./generated/TextQuestion";
+import DateQuestion from "./generated/DateQuestion";
+import NumberQuestion from "./generated/NumberQuestion";
 import LongTextQuestion from "./generated/LongTextQuestion";
 import CheckboxQuestion from "./generated/CheckboxQuestion";
 import OptionGroupQuestion from "./generated/OptionGroupQuestion";
@@ -40,12 +42,16 @@ import ChecklistQuestion from "./generated/ChecklistQuestion";
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const onSubmit = async values => {
+  console.table(values);
+
   await sleep(300);
   window.alert(JSON.stringify(values, 0, 2));
 };
 
 const components = {
   text: TextQuestion,
+  Date: DateQuestion,
+  number: NumberQuestion,
   longText: LongTextQuestion,
   Textarea: LongTextQuestion,
   checkbox: CheckboxQuestion,

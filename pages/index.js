@@ -12,6 +12,8 @@ import Textarea from "../components/Textarea";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
 
+const required = value => (value ? undefined : "required");
+
 const Index = () => {
   const [showSchema, setShowSchema] = useState(false);
 
@@ -46,6 +48,23 @@ const Index = () => {
             BodyText: "",
             Questions: [
               {
+                QuestionId: "CD-02",
+                QuestionTag: "contact-name",
+                Label: "Full name",
+                ShortLabel: "",
+                QuestionBodyText: "",
+                Hint: "",
+                Input: {
+                  Type: "text",
+                  Validations: [
+                    {
+                      Name: "Required",
+                      ErrorMessage: "Enter name"
+                    }
+                  ]
+                }
+              },
+              {
                 QuestionId: "CD-01",
                 QuestionTag: "use-trading-name",
                 Label: "Do you want to use your trading name on the register?",
@@ -74,24 +93,7 @@ const Index = () => {
                 }
               },
               {
-                QuestionId: "CD-02",
-                QuestionTag: "contact-name",
-                Label: "Full name",
-                ShortLabel: "",
-                QuestionBodyText: "",
-                Hint: "",
-                Input: {
-                  Type: "text",
-                  Validations: [
-                    {
-                      Name: "Required",
-                      ErrorMessage: "Enter name"
-                    }
-                  ]
-                }
-              },
-              {
-                QuestionId: "CD-14.1",
+                QuestionId: "CD-14",
                 Label: "Provide details of other positions or directorships ",
                 ShortLabel: "",
                 QuestionBodyText: "",
@@ -102,6 +104,49 @@ const Index = () => {
                     {
                       Name: "Required",
                       ErrorMessage: "Enter other organisation details"
+                    }
+                  ]
+                }
+              },
+              {
+                QuestionId: "CD-20",
+                Label: "Date of birth",
+                ShortLabel: "",
+                QuestionBodyText: "",
+                Hint: "",
+                Input: {
+                  Type: "Date",
+                  Validations: [
+                    {
+                      Name: "Required",
+                      ErrorMessage: "Enter a date"
+                    },
+                    {
+                      Name: "Date",
+                      Value: "",
+                      ErrorMessage: "Date must be correct"
+                    },
+                    {
+                      Name: "DateNotInFuture",
+                      Value: "",
+                      ErrorMessage: "Date cannot be in the future"
+                    }
+                  ]
+                }
+              },
+              {
+                QuestionId: "CD-21",
+                Label: "How many shares does the director hold?",
+                ShortLabel: "",
+                QuestionBodyText: "",
+                Hint: "",
+                Input: {
+                  Type: "number",
+                  InputClasses: "govuk-input--width-5",
+                  Validations: [
+                    {
+                      Name: "Required",
+                      ErrorMessage: "Enter number of shares"
                     }
                   ]
                 }
@@ -216,23 +261,46 @@ const Index = () => {
               <form onSubmit={handleSubmit}>
                 <h3>Page</h3>
                 {/* <GradientBar /> */}
+
                 <Row>
-                  <Field
-                    name="LinkTitle"
-                    component="input"
-                    type="text"
-                    placeholder="Link title"
-                    style={{ width: "100%" }}
-                  />
+                  <Field name="LinkTitle" validate={required}>
+                    {({ input, meta }) => (
+                      <>
+                        <input
+                          {...input}
+                          type="text"
+                          placeholder={
+                            meta.error && meta.touched
+                              ? `Link title is ${meta.error}`
+                              : `Link title`
+                          }
+                          style={{ width: "100%" }}
+                          component="input"
+                          className={meta.error && meta.touched && meta.error}
+                        />
+                      </>
+                    )}
+                  </Field>
                 </Row>
                 <Row>
-                  <Field
-                    name="Title"
-                    component="input"
-                    type="text"
-                    placeholder="Page title"
-                    style={{ width: "100%" }}
-                  />
+                  <Field name="Title" validate={required}>
+                    {({ input, meta }) => (
+                      <>
+                        <input
+                          {...input}
+                          type="text"
+                          placeholder={
+                            meta.error && meta.touched
+                              ? `Page title is ${meta.error}`
+                              : `Page title`
+                          }
+                          style={{ width: "100%" }}
+                          component="input"
+                          className={meta.error && meta.touched && meta.error}
+                        />
+                      </>
+                    )}
+                  </Field>
                 </Row>
                 <Row>
                   <Field
@@ -326,17 +394,22 @@ const Row = styled.div`
     flex: 1;
     padding: 6px 9px;
     font-size: 1em;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 3px;
     &[disabled] {
       background: #eee;
     }
   }
 
+  .required {
+    border: 2px solid #d60000;
+  }
+
   & > input {
     margin: 0 0 5px 0;
     padding: 9px;
   }
+
   & > textarea {
     min-height: 38px;
     line-height: 24px;
