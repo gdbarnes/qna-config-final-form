@@ -8,12 +8,15 @@ const SortHandle = sortableHandle(() => (
 ));
 
 const SortButton = styled(FontAwesomeIcon)`
+  box-sizing: content-box;
   cursor: pointer;
-  font-size: 22px;
+  padding: 5px;
+  font-size: 20px;
   opacity: 0.7;
   &:hover {
     opacity: 1;
   }
+  color: #565656;
 `;
 
 export default SortHandle;

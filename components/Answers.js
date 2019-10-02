@@ -47,12 +47,11 @@ export default Answers;
 const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  margin: 10px 0;
-  padding-left: 20px;
+  /* padding-left: 28px; */
 `;
 
 const Buttons = styled.div`
-  padding: 10px 0;
+  padding: 0;
   text-align: left;
 `;
 

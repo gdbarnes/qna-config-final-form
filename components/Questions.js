@@ -25,9 +25,9 @@ const Questions = sortableContainer(() => {
 
           return (
             <>
-              <div className="move">
+              {/* <div className="move">
                 <button onClick={myMove}>Move down</button>
-              </div>
+              </div> */}
               <SortableList
                 lockAxis="y"
                 useDragHandle
@@ -85,7 +85,7 @@ const Container = styled.div`
 `;
 
 const Buttons = styled.div`
-  padding: 10px 0;
+  padding: 0;
   text-align: left;
 `;
 

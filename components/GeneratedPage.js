@@ -36,6 +36,7 @@ import NumberQuestion from "./generated/NumberQuestion";
 import LongTextQuestion from "./generated/LongTextQuestion";
 import CheckboxQuestion from "./generated/CheckboxQuestion";
 import OptionGroupQuestion from "./generated/OptionGroupQuestion";
+import ComplexRadioQuestion from "./generated/ComplexRadioQuestion";
 import DropdownQuestion from "./generated/DropdownQuestion";
 import ChecklistQuestion from "./generated/ChecklistQuestion";
 
@@ -56,6 +57,7 @@ const components = {
   Textarea: LongTextQuestion,
   checkbox: CheckboxQuestion,
   optionGroup: OptionGroupQuestion,
+  ComplexRadio: ComplexRadioQuestion,
   Radio: OptionGroupQuestion,
   checklist: ChecklistQuestion,
   dropdown: DropdownQuestion

@@ -42,6 +42,10 @@ const types = [
   {
     value: "Radio",
     label: "Radio"
+  },
+  {
+    value: "ComplexRadio",
+    label: "Complex radio"
   }
   // {
   //   value: "checklist",
@@ -56,7 +60,13 @@ const types = [
 const hasOptions = type => {
   // console.log(Input);
 
-  return ~["optionGroup", "Radio", "checklist", "dropdown"].indexOf(type);
+  return ~[
+    "optionGroup",
+    "Radio",
+    "ComplexRadio",
+    "checklist",
+    "dropdown"
+  ].indexOf(type);
 };
 
 const isText = type => ~["text", "longText"].indexOf(type);
@@ -67,21 +77,22 @@ const IfType = ({ name, children, predicate }) => (
   </Field>
 );
 
-const Question = sortableElement(({ name, removeQuestion }) => {
+const Question = sortableElement(({ name, isSortable, removeQuestion }) => {
   const [open, setOpen] = useState(true);
   const toggleOpen = event => setOpen(!open);
 
   return (
     <div>
       <Container>
-        <Handle>
+        <QuestionControls>
           <SortHandle />
           <RemoveQuestionButton
             icon={faTrash}
             onClick={removeQuestion}
             width="0"
           />
-        </Handle>
+        </QuestionControls>
+
         {/* <Handle>
           <SortHandle />
         </Handle> */}
@@ -152,13 +163,18 @@ const Container = styled.div`
   border: 2px solid #ccc;
   background: #fff;
   border-radius: 3px;
-  padding: 10px 10px 10px 40px;
+  padding: 10px 10px 10px 36px;
   margin-bottom: 10px;
 `;
 
 const Row = styled.div`
   display: flex;
   flex-flow: row nowrap;
+  margin-bottom: 5px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   input,
   textarea {
@@ -177,19 +193,19 @@ const Row = styled.div`
   }
 
   & > input {
-    margin: 0 0 5px 0;
+    margin: 0;
     padding: 9px;
   }
 
   & > textarea {
     min-height: 38px;
     line-height: 24px;
-    margin: 0 0 5px 0;
+    margin: 0;
   }
 `;
 
 const TypeSelector = styled(Select)`
-  margin: 0 5px 5px 5px;
+  margin-left: 5px;
   width: 150px;
 `;
 
@@ -202,24 +218,27 @@ const TypeSelector = styled(Select)`
 //   margin-top: 20px;
 // `;
 
-const Handle = styled.div`
+const QuestionControls = styled.div`
   position: absolute;
-  left: 10px;
-  top: 10px;
-  color: #666;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  left: 0px;
+  top: 0px;
+  border-right: 2px solid #ccc;
+  background: #f2f2f2;
 `;
 
-const removeButtonSize = 16;
 const RemoveQuestionButton = styled(FontAwesomeIcon)`
-  color: #800;
+  box-sizing: content-box;
   cursor: pointer;
-  font-size: ${removeButtonSize}px;
-  position: absolute;
+  padding: 5px;
+  font-size: 16px;
   right: 0;
-  top: 50%;
-  margin-top: ${removeButtonSize + 5}px;
   opacity: 0.7;
   &:hover {
     opacity: 1;
   }
+  color: #800;
 `;

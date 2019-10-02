@@ -150,6 +150,58 @@ const Index = () => {
                     }
                   ]
                 }
+              },
+              {
+                QuestionId: "CD-12",
+                QuestionTag: "company-ukprn",
+                Label: "Do you have a UK provider registration number (UKPRN)?",
+                ShortLabel: "",
+                QuestionBodyText: "",
+                Hint: "",
+                Input: {
+                  Type: "ComplexRadio",
+                  Options: [
+                    {
+                      FurtherQuestions: [
+                        {
+                          QuestionId: "CD-12.1",
+                          Label: "Provide your UKPRN",
+                          ShortLabel: "",
+                          QuestionBodyText: "",
+                          Hint: "",
+                          Input: {
+                            Type: "number",
+                            InputClasses: "govuk-input--width-10",
+                            Validations: [
+                              {
+                                Name: "Required",
+                                ErrorMessage: "Enter your UKPRN"
+                              },
+                              {
+                                Name: "Regex",
+                                Value: "^[0-9]{8}$",
+                                ErrorMessage:
+                                  "Enter your UKPRN (must be 8 digits)"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      Value: "Yes",
+                      Label: "Yes"
+                    },
+                    {
+                      Value: "No",
+                      Label: "No"
+                    }
+                  ],
+                  Validations: [
+                    {
+                      Name: "Required",
+                      ErrorMessage: "Select yes if you have a UKPRN"
+                    }
+                  ]
+                }
               }
             ],
             // questions: [
@@ -388,6 +440,11 @@ const Columns = styled.div`
 const Row = styled.div`
   display: flex;
   flex-flow: row nowrap;
+  margin-bottom: 5px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   input,
   textarea {
@@ -406,14 +463,14 @@ const Row = styled.div`
   }
 
   & > input {
-    margin: 0 0 5px 0;
+    margin: 0;
     padding: 9px;
   }
 
   & > textarea {
     min-height: 38px;
     line-height: 24px;
-    margin: 0 0 5px 0;
+    margin: 0;
   }
 `;
 

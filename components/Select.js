@@ -3,7 +3,8 @@ import ReactSelect from "react-select";
 const customStyles = {
   control: provided => ({
     ...provided,
-    border: "2px solid #ccc"
+    border: "2px solid #ccc",
+    borderRadius: "3px"
   })
 };
 

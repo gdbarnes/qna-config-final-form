@@ -1,7 +1,7 @@
-import React from 'react'
-import { Field } from 'react-final-form'
-import styled from 'styled-components'
-import Select from '../Select'
+import React from "react";
+import { Field } from "react-final-form";
+import styled from "styled-components";
+import Select from "../Select";
 
 export default ({ question }) => (
   <Row>
@@ -20,17 +20,23 @@ export default ({ question }) => (
       isSearchable={false}
     />
   </Row>
-)
+);
 
 const Row = styled.div`
   display: flex;
   flex-flow: row nowrap;
+  margin-bottom: 5px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   & > label {
     width: 150px;
     margin-right: 15px;
   }
-`
+`;
 
 const Selector = styled(Select)`
   flex: 1;
-`
+`;
